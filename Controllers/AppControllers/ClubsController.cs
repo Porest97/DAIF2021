@@ -20,12 +20,19 @@ namespace DAIF2021.Controllers.AppControllers
         }
 
         // GET: Clubs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexSearch(string searchString)
         {
-            return View(await _context.Club.ToListAsync());
-        }
+            var clubs = from a in _context.Club
 
-        // GET: Clubs/Details/5
+                         select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clubs = clubs
+                    .Where(s => s.ClubName.Contains(searchString));
+            }
+            return View(await clubs.ToListAsync());
+        }
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -60,7 +67,7 @@ namespace DAIF2021.Controllers.AppControllers
             {
                 _context.Add(club);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexSearch));
             }
             return View(club);
         }
@@ -111,7 +118,7 @@ namespace DAIF2021.Controllers.AppControllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexSearch));
             }
             return View(club);
         }
@@ -142,7 +149,7 @@ namespace DAIF2021.Controllers.AppControllers
             var club = await _context.Club.FindAsync(id);
             _context.Club.Remove(club);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexSearch));
         }
 
         private bool ClubExists(int id)

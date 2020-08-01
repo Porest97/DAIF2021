@@ -1,4 +1,4 @@
-﻿@model DAIF2021.Data.Arena
+﻿@model Arena
 
 @{
     ViewData["Title"] = "Delete";
@@ -52,6 +52,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="IndexSearch">Back to List</a>
     </form>
 </div>

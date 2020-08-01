@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DAIF2021.Data;
+using DAIF2021.Models.DataModels;
 
 namespace DAIF2021.Controllers.AppControllers
 {
@@ -19,9 +20,18 @@ namespace DAIF2021.Controllers.AppControllers
         }
 
         // GET: Arenas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexSearch(string searchString)
         {
-            return View(await _context.Arena.ToListAsync());
+            var arenas = from a in _context.Arena
+
+                         select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                arenas = arenas
+                    .Where(s => s.ArenaName.Contains(searchString));
+            }
+            return View(await arenas.ToListAsync());
         }
 
         // GET: Arenas/Details/5
@@ -59,7 +69,7 @@ namespace DAIF2021.Controllers.AppControllers
             {
                 _context.Add(arena);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexSearch));
             }
             return View(arena);
         }
@@ -110,7 +120,7 @@ namespace DAIF2021.Controllers.AppControllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexSearch));
             }
             return View(arena);
         }
@@ -141,7 +151,7 @@ namespace DAIF2021.Controllers.AppControllers
             var arena = await _context.Arena.FindAsync(id);
             _context.Arena.Remove(arena);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexSearch));
         }
 
         private bool ArenaExists(int id)

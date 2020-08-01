@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Arena>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+    <div class="badge">
+        <div class="col-sm-12">
+            <h6>
+                ALL Arenas - Name - Search
+            </h6>
+        </div>
+        <div class="col-sm-12">
+            <h6>
+                <a class="btn btn-sm btn-success" asp-controller="Arenas" asp-action="Create">Register New Arena</a>
+                <a class="btn btn-sm btn-success" asp-controller="Administration" asp-action="Admin">Back to Admin menu</a>
+            </h6>
+        </div>
+
+        <div class="col-sm-12 text-center">
+            <form asp-controller="Arenas" asp-action="IndexSearch">
+                <p>
+                    Arena name: <input type="text" name="SearchString">
+
+                    <input type="submit" value="Search" />
+                </p>
+            </form>
+        </div>
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ArenaNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.ArenaName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Address)</th>
+                    <th>@Html.DisplayNameFor(model => model.Country)</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(a => a.ArenaName))
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.ArenaNumber)</td>
+                        <td> @Html.DisplayFor(modelItem => item.ArenaName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Country)</td>
+
+                        <td><a class="btn btn-sm btn-success" asp-controller="Arenas" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                        <td><a class="btn btn-sm btn-success" asp-controller="Arenas" asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>        
+    </div>

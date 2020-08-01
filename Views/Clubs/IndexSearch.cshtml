@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Club>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+    <div class="badge">
+        <div class="col-sm-12">
+            <h6>
+                ALL Clubs - Name - Search                
+            </h6>
+        </div>
+        <div class="col-sm-12">
+            <h6>
+                <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Create">Register New Club</a>
+                <a class="btn btn-sm btn-success" asp-controller="Administration" asp-action="Admin">Back to Admin menu</a>
+            </h6>
+        </div>
+
+        <div class="col-sm-12 text-center">
+            <form asp-controller="Clubs" asp-action="IndexSearch">
+                <p>
+                    Club name: <input type="text" name="SearchString">
+
+                    <input type="submit" value="Search" />
+                </p>
+            </form>
+        </div>
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ClubNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.ClubName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Address)</th>
+                    <th>@Html.DisplayNameFor(model => model.Country)</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(c => c.ClubName))
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.ClubNumber)</td>
+                        <td> @Html.DisplayFor(modelItem => item.ClubName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Country)</td>
+
+                        <td><a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                        <td><a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>        
+    </div>

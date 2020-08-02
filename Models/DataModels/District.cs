@@ -30,6 +30,7 @@ namespace DAIF2021.Models.DataModels
         public string Address { get { return string.Format("{0} {1} {2}", StreetAddress, ZipCode, City); } }
 
         [Display(Name = "Phone #")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Email")]

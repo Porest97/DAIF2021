@@ -6,41 +6,43 @@
 }
 
 
-    <div class="badge">
-        <div class="col-sm-12">
+    <div class="card col-md-12">
+        <div class="card-header col-md-12 text-center">
             <h6>
-                ALL Clubs - Name - Search                
+                ALL Clubs - Name - Search
             </h6>
-        </div>
-        <div class="col-sm-12">
-            <h6>
-                <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Create">Register New Club</a>
-                <a class="btn btn-sm btn-success" asp-controller="Administration" asp-action="Admin">Back to Admin menu</a>
-            </h6>
-        </div>
+        
+            <div class="card-header col-md-12">
+                <h6>
+                    <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Create">Register New Club</a>
+                    <a class="btn btn-sm btn-success" asp-controller="Administration" asp-action="Admin">Back to Admin menu</a>
+                </h6>
+            </div>
 
-        <div class="col-sm-12 text-center">
-            <form asp-controller="Clubs" asp-action="IndexSearch">
-                <p>
-                    Club name: <input type="text" name="SearchString">
+            <div class="card-header col-md-12 text-center">
+                <form asp-controller="Clubs" asp-action="IndexSearch">
+                    <p>
+                        Club name: <input type="text" name="SearchString">
 
-                    <input type="submit" value="Search" />
-                </p>
-            </form>
+                        <input type="submit" value="Search" />
+                    </p>
+                </form>
+            </div>
         </div>
-        <table class="table table-responsive-sm table-striped">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.ClubNumber)</th>
-                    <th>@Html.DisplayNameFor(model => model.ClubName)</th>
-                    <th>@Html.DisplayNameFor(model => model.Address)</th>
-                    <th>@Html.DisplayNameFor(model => model.Country)</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.OrderBy(c => c.ClubName))
+        <div class="card-body col-md-12">
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ClubNumber)</th>
+                        <th>@Html.DisplayNameFor(model => model.ClubName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Address)</th>
+                        <th>@Html.DisplayNameFor(model => model.Country)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderBy(c => c.ClubName))
                 {
                     <tr>
                         <td> @Html.DisplayFor(modelItem => item.ClubNumber)</td>
@@ -53,6 +55,7 @@
 
                     </tr>
                 }
-            </tbody>
-        </table>        
+                </tbody>
+            </table>
+        </div>
     </div>

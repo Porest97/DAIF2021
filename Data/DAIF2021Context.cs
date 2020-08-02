@@ -33,5 +33,7 @@ namespace DAIF2021.Data
         }
 
         public DbSet<DAIF2021.Models.DataModels.Club> Club { get; set; }
+
+        public DbSet<DAIF2021.Models.DataModels.District> District { get; set; }
     }
 }

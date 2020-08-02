@@ -10,11 +10,11 @@ using DAIF2021.Models.DataModels;
 
 namespace DAIF2021.Controllers.AppControllers
 {
-    public class ClubsController : Controller
+    public class DistrictsController : Controller
     {
         private readonly DAIF2021Context _context;
 
-        public ClubsController(DAIF2021Context context)
+        public DistrictsController(DAIF2021Context context)
         {
             _context = context;
         }
@@ -22,17 +22,19 @@ namespace DAIF2021.Controllers.AppControllers
         // GET: Clubs
         public async Task<IActionResult> IndexSearch(string searchString)
         {
-            var clubs = from c in _context.Club
+            var districts = from d in _context.District
 
-                         select c;
+                        select d;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                clubs = clubs
-                    .Where(s => s.ClubName.Contains(searchString));
+                districts = districts
+                    .Where(s => s.DistrictName.Contains(searchString));
             }
-            return View(await clubs.ToListAsync());
+            return View(await districts.ToListAsync());
         }
+
+        // GET: Districts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -40,39 +42,39 @@ namespace DAIF2021.Controllers.AppControllers
                 return NotFound();
             }
 
-            var club = await _context.Club
+            var district = await _context.District
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (club == null)
+            if (district == null)
             {
                 return NotFound();
             }
 
-            return View(club);
+            return View(district);
         }
 
-        // GET: Clubs/Create
+        // GET: Districts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clubs/Create
+        // POST: Districts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClubNumber,ClubName,ShortName,StreetAddress,ZipCode,City,Country")] Club club)
+        public async Task<IActionResult> Create([Bind("Id,DistrictName,StreetAddress,ZipCode,City,Country,PhoneNumber,Email")] District district)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(club);
+                _context.Add(district);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(IndexSearch));
             }
-            return View(club);
+            return View(district);
         }
 
-        // GET: Clubs/Edit/5
+        // GET: Districts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,22 +82,22 @@ namespace DAIF2021.Controllers.AppControllers
                 return NotFound();
             }
 
-            var club = await _context.Club.FindAsync(id);
-            if (club == null)
+            var district = await _context.District.FindAsync(id);
+            if (district == null)
             {
                 return NotFound();
             }
-            return View(club);
+            return View(district);
         }
 
-        // POST: Clubs/Edit/5
+        // POST: Districts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClubNumber,ClubName,ShortName,StreetAddress,ZipCode,City,Country")] Club club)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DistrictName,StreetAddress,ZipCode,City,Country,PhoneNumber,Email")] District district)
         {
-            if (id != club.Id)
+            if (id != district.Id)
             {
                 return NotFound();
             }
@@ -104,12 +106,12 @@ namespace DAIF2021.Controllers.AppControllers
             {
                 try
                 {
-                    _context.Update(club);
+                    _context.Update(district);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClubExists(club.Id))
+                    if (!DistrictExists(district.Id))
                     {
                         return NotFound();
                     }
@@ -120,10 +122,10 @@ namespace DAIF2021.Controllers.AppControllers
                 }
                 return RedirectToAction(nameof(IndexSearch));
             }
-            return View(club);
+            return View(district);
         }
 
-        // GET: Clubs/Delete/5
+        // GET: Districts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,30 +133,30 @@ namespace DAIF2021.Controllers.AppControllers
                 return NotFound();
             }
 
-            var club = await _context.Club
+            var district = await _context.District
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (club == null)
+            if (district == null)
             {
                 return NotFound();
             }
 
-            return View(club);
+            return View(district);
         }
 
-        // POST: Clubs/Delete/5
+        // POST: Districts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var club = await _context.Club.FindAsync(id);
-            _context.Club.Remove(club);
+            var district = await _context.District.FindAsync(id);
+            _context.District.Remove(district);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(IndexSearch));
         }
 
-        private bool ClubExists(int id)
+        private bool DistrictExists(int id)
         {
-            return _context.Club.Any(e => e.Id == id);
+            return _context.District.Any(e => e.Id == id);
         }
     }
 }

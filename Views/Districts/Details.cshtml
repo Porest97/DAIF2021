@@ -1,41 +1,39 @@
-﻿@model Club
+﻿@model District
 
 @{
     ViewData["Title"] = "Details";
 }
 
-   
-
     <div class="card col-md-8">
         <div class="card-header">
-            <h4>Details for : @Html.DisplayFor(model => model.ClubName)</h4>
+            <h4>Details for : @Html.DisplayFor(model => model.DistrictName)</h4>
         </div>
         <div class="card-body">
             <dl class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ClubNumber)
+                    @Html.DisplayNameFor(model => model.DistrictName)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClubNumber)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ClubName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClubName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShortName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShortName)
+                    @Html.DisplayFor(model => model.DistrictName)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Address)
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Address)
-                </dd>               
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Country)
                 </dt>
@@ -46,8 +44,8 @@
         </div>
         <div class="card-footer">
             <div>
-                <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="IndexSearch">Back to Clubs</a>
+                <a class="btn btn-sm btn-success" asp-controller="Districts" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                <a class="btn btn-sm btn-success" asp-controller="Districts" asp-action="IndexSearch">Back to Districts</a>
             </div>
         </div>
-     </div>
+    </div>

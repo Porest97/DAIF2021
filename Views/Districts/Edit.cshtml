@@ -1,12 +1,11 @@
-﻿@model Arena
+﻿@model District
 
 @{
     ViewData["Title"] = "Edit";
 }
-
     <div class="card col-md-6">
         <div class="card-header">
-            <h4>Edit Arena : @Html.DisplayFor(model => model.ArenaName)</h4>
+            <h4>Edit District : @Html.DisplayFor(model => model.DistrictName)</h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -15,14 +14,19 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
-                            <label asp-for="ArenaNumber" class="control-label"></label>
-                            <input asp-for="ArenaNumber" class="form-control" />
-                            <span asp-validation-for="ArenaNumber" class="text-danger"></span>
+                            <label asp-for="DistrictName" class="control-label"></label>
+                            <input asp-for="DistrictName" class="form-control" />
+                            <span asp-validation-for="DistrictName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="ArenaName" class="control-label"></label>
-                            <input asp-for="ArenaName" class="form-control" />
-                            <span asp-validation-for="ArenaName" class="text-danger"></span>
+                            <label asp-for="PhoneNumber" class="control-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="StreetAddress" class="control-label"></label>
@@ -53,7 +57,11 @@
         </div>
         <div class="card-footer">
             <div>
-                <a class="btn btn-sm btn-success" asp-controller="Arenas" asp-action="IndexSearch">Back to Arenas</a>
+                <a class="btn btn-sm btn-success" asp-controller="Districts" asp-action="IndexSearch">Back to Districts</a>
             </div>
         </div>
     </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

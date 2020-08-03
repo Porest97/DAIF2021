@@ -80,13 +80,13 @@ namespace DAIF2021.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonalEmail")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber1")
@@ -190,6 +190,31 @@ namespace DAIF2021.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("DAIF2021.Models.DataModels.ApplicationUserPerson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PersonId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PersonId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId1");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ApplicationUserPerson");
                 });
 
             modelBuilder.Entity("DAIF2021.Models.DataModels.Arena", b =>
@@ -494,6 +519,19 @@ namespace DAIF2021.Migrations
                     b.HasOne("DAIF2021.Models.DataModels.Sport", "Sport")
                         .WithMany()
                         .HasForeignKey("SportId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("DAIF2021.Models.DataModels.ApplicationUserPerson", b =>
+                {
+                    b.HasOne("DAIF2021.Data.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId1")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DAIF2021.Models.DataModels.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

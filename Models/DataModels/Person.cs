@@ -50,10 +50,12 @@ namespace DAIF2021.Data
 
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string PersonalEmail { get; set; }
 
 
 
         //Person Category, Status and Type.
+
+
     }
 }

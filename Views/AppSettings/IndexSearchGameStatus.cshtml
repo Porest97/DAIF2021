@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GameStatus>
+
+@{
+    ViewData["Title"] = "IndexSearchGameStatus";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateGameStatus">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameStatusName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameStatusName)
+                </td>
+                <td>
+                    <a asp-controller="AppSettings" asp-action="Edit" asp-route-id="@item.Id">EditGameStatus</a> |
+                    <a asp-controller="AppSettings" asp-action="Details" asp-route-id="@item.Id">DetailsGameStatus</a> |
+                    <a asp-controller="AppSettings" asp-action="Delete" asp-route-id="@item.Id">DeleteGameStatus</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

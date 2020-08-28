@@ -24,7 +24,11 @@ namespace DAIF2021.Controllers.IdentityControllers
             this.roleManager = roleManager;
             this.userManager = userManager;
         }
-
+        [HttpGet]
+        public IActionResult Settings()
+        {
+            return View();
+        }        
         [HttpGet]
         public async Task<IActionResult> ManageUserClaims(string userId)
         {

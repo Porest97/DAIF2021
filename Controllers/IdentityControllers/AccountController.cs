@@ -27,7 +27,7 @@ namespace DAIF2021.Controllers.IdentityControllers
         {
             return View();
         }
-
+       
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

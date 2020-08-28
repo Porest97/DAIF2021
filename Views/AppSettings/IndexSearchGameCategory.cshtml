@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GameCategory>
+
+@{
+    ViewData["Title"] = "IndexGameCategory";
+}
+
+<h1>Game Categories</h1>
+
+<p>
+    <a asp-action="CreateGameCategory">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameCategoryName)
+            </td>
+            <td>
+                <a asp-controller="AppSettings" asp-action="Edit" asp-route-id="@item.Id">EditGameCategory</a> |
+                <a asp-controller="AppSettings" asp-action="Details" asp-route-id="@item.Id">DetailsGameCategory</a> |
+                <a asp-controller="AppSettings" asp-action="Delete" asp-route-id="@item.Id">DeleteGameCategory</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

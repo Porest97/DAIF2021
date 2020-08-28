@@ -4,14 +4,16 @@ using DAIF2021.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAIF2021.Migrations
 {
     [DbContext(typeof(DAIF2021Context))]
-    partial class DAIF2021ContextModelSnapshot : ModelSnapshot
+    [Migration("20200825131205_MDProtocolsAdded")]
+    partial class MDProtocolsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,50 +4,50 @@
     ViewData["Title"] = "Details";
 }
 
-   
 
-    <div class="card col-md-8">
-        <div class="card-header">
-            <h4>Details for : @Html.DisplayFor(model => model.ClubName)</h4>
+
+<div class="card col-md-8">
+    <div class="card-header">
+        <h4>Details for : @Html.DisplayFor(model => model.ClubName)</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClubNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ClubNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClubName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ClubName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ShortName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShortName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <div>
+            <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="IndexSearch">Back to Clubs</a>
         </div>
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ClubNumber)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClubNumber)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ClubName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClubName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShortName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShortName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Address)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Address)
-                </dd>               
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Country)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Country)
-                </dd>
-            </dl>
-        </div>
-        <div class="card-footer">
-            <div>
-                <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                <a class="btn btn-sm btn-success" asp-controller="Clubs" asp-action="IndexSearch">Back to Clubs</a>
-            </div>
-        </div>
-     </div>
+    </div>
+</div>

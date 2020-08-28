@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DAIF2021.Data
+namespace DAIF2021.Models.DataModels
 {
     public class Person
     {

@@ -4,14 +4,16 @@ using DAIF2021.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAIF2021.Migrations
 {
     [DbContext(typeof(DAIF2021Context))]
-    partial class DAIF2021ContextModelSnapshot : ModelSnapshot
+    [Migration("20200811051459_Create-Games-PersonTypesETC")]
+    partial class CreateGamesPersonTypesETC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -371,59 +373,6 @@ namespace DAIF2021.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GameType");
-                });
-
-            modelBuilder.Entity("DAIF2021.Models.DataModels.MDProtocol", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BodyTemp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cough")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Diarrhea")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FamilySymtoms")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Headache")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MuscleAches")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NasalCongestion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nausea")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OtherSymptoms")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OtherSymptomsDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SoreThroat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("MDProtocol");
                 });
 
             modelBuilder.Entity("DAIF2021.Models.DataModels.Person", b =>
@@ -842,14 +791,6 @@ namespace DAIF2021.Migrations
                     b.HasOne("DAIF2021.Models.DataModels.Series", "Series")
                         .WithMany()
                         .HasForeignKey("SeriesId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("DAIF2021.Models.DataModels.MDProtocol", b =>
-                {
-                    b.HasOne("DAIF2021.Models.DataModels.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

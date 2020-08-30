@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TSMGame>
+
+@{
+    ViewData["Title"] = "IndexSearchTSMGames";
+
+}
+
+
+<div class="card col-md-12">
+    <div class="card-header col-md-12 text-center">
+        <h6>
+            ALL TSM Matcher -  med sökning av TSM#, Arena, Datum, Status !
+        </h6>
+        <div class="card-header col-md-12">
+            <h6>
+                @*<a class="btn btn-sm btn-success" asp-controller="TSMGames" asp-action="Create">Register New Person</a>*@
+                <a class="btn btn-sm btn-success" asp-controller="Administration" asp-action="Admin">Back to Admin menu</a>
+            </h6>
+        </div>
+        <div class="card-header col-md-12 text-center">
+            <form asp-controller="TSMGames" asp-action="IndexSearch">
+                <div class="card-header col-md-12">
+                    TSM#: <input type="text" name="SearchString">
+                    Arena: <input type="text" name="SearchString1">
+                    Datum: <input type="text" name="SearchString2">
+                    Status: <input type="text" name="SearchString3" value="Scheduled">
+                </div>
+                <div class="card-header col-md-12">
+                    <input type="submit" value="Search" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card-body col-md-12">
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.GameNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.GameDateTime)</th>
+                    <th>@Html.DisplayNameFor(model => model.Arena)</th>
+                    <th>@Html.DisplayNameFor(model => model.HomeTeam)</th>
+                    <th>@Html.DisplayNameFor(model => model.AwayTeam)</th>
+                    <th>@Html.DisplayNameFor(model => model.TSMGameStatus)</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(t => t.GameDateTime))
+                {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => item.GameNumber)</td>
+                    <td> @Html.DisplayFor(modelItem => item.GameDateTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Arena)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HomeTeam)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AwayTeam)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TSMGameStatus.TSMGameStatusName)</td>
+
+                    <td><a class="btn btn-sm btn-success" asp-controller="TSMGames" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                    <td><a class="btn btn-sm btn-success" asp-controller="TSMGames" asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

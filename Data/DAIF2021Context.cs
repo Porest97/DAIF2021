@@ -35,6 +35,9 @@ namespace DAIF2021.Data
         public DbSet<Workout> Workout { get; set; }
         public DbSet<MDProtocol> MDProtocol { get; set; }
 
+        public DbSet<TSMGame> TSMGame { get; set; }
+        public DbSet<TSMGameStatus> TSMGameStatus { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
